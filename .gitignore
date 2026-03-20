@@ -44,5 +44,4 @@ next-env.d.ts
 .next
 
 # user data
-/data/custom-repos.json
 .claude/

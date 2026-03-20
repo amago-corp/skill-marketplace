@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #030712;
+  --color-foreground: #f9fafb;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 3px;
+}
+
+/* Markdown content styling */
+.prose-skill h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #f9fafb;
+}
+.prose-skill h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #1f2937;
+  color: #f3f4f6;
+}
+.prose-skill h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #e5e7eb;
+}
+.prose-skill p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+  color: #d1d5db;
+}
+.prose-skill ul,
+.prose-skill ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  color: #d1d5db;
+}
+.prose-skill ul {
+  list-style-type: disc;
+}
+.prose-skill ol {
+  list-style-type: decimal;
+}
+.prose-skill li {
+  margin-bottom: 0.25rem;
+  line-height: 1.625;
+}
+.prose-skill code {
+  background-color: #1f2937;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: #67e8f9;
+}
+.prose-skill pre {
+  background-color: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+.prose-skill pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.875rem;
+  color: #e5e7eb;
+}
+.prose-skill strong {
+  color: #f9fafb;
+  font-weight: 600;
+}
+.prose-skill a {
+  color: #22d3ee;
+  text-decoration: underline;
+}
+.prose-skill a:hover {
+  color: #67e8f9;
+}
+.prose-skill blockquote {
+  border-left: 3px solid #0891b2;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #9ca3af;
+}
+.prose-skill table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.prose-skill th,
+.prose-skill td {
+  border: 1px solid #1f2937;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.prose-skill th {
+  background-color: #111827;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+.prose-skill td {
+  color: #d1d5db;
+}
+.prose-skill hr {
+  border-color: #1f2937;
+  margin: 2rem 0;
+}

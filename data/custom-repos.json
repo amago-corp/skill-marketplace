@@ -1,3 +1,22 @@
 [
-
+  {
+    "id": "github:coreyhaines31-marketingskills",
+    "provider": "github",
+    "owner": "coreyhaines31",
+    "repo": "marketingskills",
+    "branch": "main",
+    "displayName": "marketingskills",
+    "description": "",
+    "categories": []
+  },
+  {
+    "id": "github:affaan-m-everything-claude-code",
+    "provider": "github",
+    "owner": "affaan-m",
+    "repo": "everything-claude-code",
+    "branch": "main",
+    "displayName": "everything-claude-code",
+    "description": "",
+    "categories": []
+  }
 ]

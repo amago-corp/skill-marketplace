@@ -9,30 +9,30 @@ interface CategoryStyle {
 const categoryStyles: Record<CategoryType, CategoryStyle> = {
   command: {
     badge:
-      "bg-amber-500/10 text-amber-400 border-amber-500/20",
+      "bg-amber-500/15 text-amber-300 border-amber-400/30",
     filterSelected:
       "bg-amber-600 text-white shadow-sm",
     icon: "terminal",
   },
   agent: {
     badge:
-      "bg-purple-500/10 text-purple-400 border-purple-500/20",
+      "bg-violet-500/15 text-violet-300 border-violet-400/30",
     filterSelected:
-      "bg-purple-600 text-white shadow-sm",
+      "bg-violet-600 text-white shadow-sm",
     icon: "cpu",
   },
   skill: {
     badge:
-      "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+      "bg-teal-500/15 text-teal-300 border-teal-400/30",
     filterSelected:
-      "bg-emerald-600 text-white shadow-sm",
+      "bg-teal-600 text-white shadow-sm",
     icon: "zap",
   },
 };
 
 const fallback: CategoryStyle = {
-  badge: "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
-  filterSelected: "bg-indigo-600 text-white shadow-sm",
+  badge: "bg-slate-500/15 text-slate-300 border-slate-400/30",
+  filterSelected: "bg-slate-600 text-white shadow-sm",
   icon: "box",
 };
 
@@ -48,4 +48,4 @@ export function getCategoryIcon(category: string): string {
   return (categoryStyles[category as CategoryType] ?? fallback).icon;
 }
 
-export const NEW_BADGE_CLASS = "bg-rose-500/10 text-rose-400 border-rose-500/20";
+export const NEW_BADGE_CLASS = "bg-lime-400/15 text-lime-300 border-lime-400/40";

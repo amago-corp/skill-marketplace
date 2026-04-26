@@ -7,6 +7,7 @@ import SearchBar from "@/components/SearchBar";
 import CategoryFilter from "@/components/CategoryFilter";
 import SkillCardSkeleton from "@/components/SkillCardSkeleton";
 import EmptyRepoState from "@/components/EmptyRepoState";
+import QuickStartGuide from "@/components/QuickStartGuide";
 import { Skill } from "@/lib/types";
 
 const AddRepoModal = dynamic(() => import("@/components/AddRepoModal"), {
@@ -100,6 +101,9 @@ export default function Home() {
           </div>
         )}
       </section>
+
+      {/* Quick Start Guide */}
+      <QuickStartGuide />
 
       {/* Search + Add Repo */}
       <section className="max-w-2xl mx-auto mb-8 flex gap-3">

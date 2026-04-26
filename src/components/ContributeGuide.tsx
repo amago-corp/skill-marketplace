@@ -38,6 +38,9 @@ export default function ContributeGuide() {
             </span>
             <span className="text-sm sm:text-base text-gray-300 pt-0.5">
               클로드한테 <span className="text-gray-100">&quot;이거 amago hub plugin으로 정리해서 올려 줘&quot;</span> 요청
+              <span className="block text-xs text-gray-500 mt-1">
+                + 아래 두 링크 같이 붙여넣으면 클로드가 구조·규칙·예시를 보고 알아서 정리해요 ↓
+              </span>
             </span>
           </li>
           <li className="flex items-start gap-3">
@@ -49,6 +52,26 @@ export default function ContributeGuide() {
             </span>
           </li>
         </ol>
+
+        <div className="mb-5 rounded-lg border border-gray-800 bg-gray-950/60 p-3 space-y-2">
+          <div className="text-xs font-medium text-gray-400 mb-1">📎 클로드한테 같이 붙여넣을 링크</div>
+          <a
+            href="https://github.com/amago-corp/agent-hub/blob/main/CONTRIBUTING.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-xs text-emerald-400 hover:text-emerald-300 break-all"
+          >
+            ① 기여 규칙: github.com/amago-corp/agent-hub/blob/main/CONTRIBUTING.md
+          </a>
+          <a
+            href="https://github.com/amago-corp/agent-hub/tree/main/plugins/data-analyst"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-xs text-emerald-400 hover:text-emerald-300 break-all"
+          >
+            ② 예시 plugin: github.com/amago-corp/agent-hub/tree/main/plugins/data-analyst
+          </a>
+        </div>
 
         <details className="group/inner border-t border-gray-800 pt-4">
           <summary className="cursor-pointer list-none flex items-center justify-between text-sm text-gray-400 hover:text-gray-200 transition-colors">

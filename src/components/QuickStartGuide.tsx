@@ -65,7 +65,7 @@ export default function QuickStartGuide() {
               <div>
                 <div className="font-medium text-gray-200 mb-1">1. Claude Code 설치</div>
                 <a
-                  href="https://docs.claude.com/en/docs/claude-code/overview"
+                  href="https://code.claude.com/docs/en/overview.md"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-indigo-400 hover:text-indigo-300 underline underline-offset-2"

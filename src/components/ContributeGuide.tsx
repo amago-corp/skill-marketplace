@@ -20,13 +20,16 @@ export default function ContributeGuide() {
       </summary>
 
       <div className="px-6 sm:px-7 pb-6 sm:pb-7">
+        <p className="text-xs text-gray-500 mb-4">
+          코드 직접 짤 필요 없어요. 클로드 코드(Claude Code)에 시키면 됩니다.
+        </p>
         <ol className="space-y-3 mb-5">
           <li className="flex items-start gap-3">
             <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold">
               1
             </span>
             <span className="text-sm sm:text-base text-gray-300 pt-0.5">
-              레포 클론 → <code className="text-xs bg-gray-800 px-1.5 py-0.5 rounded">plugins/내거/</code> 폴더 생성
+              클로드한테 <span className="text-gray-100">&quot;이런 자동화 만들어 줘&quot;</span> 요청 — 본인이 잘 동작 확인
             </span>
           </li>
           <li className="flex items-start gap-3">
@@ -34,7 +37,7 @@ export default function ContributeGuide() {
               2
             </span>
             <span className="text-sm sm:text-base text-gray-300 pt-0.5">
-              <code className="text-xs bg-gray-800 px-1.5 py-0.5 rounded">README.md</code> + <code className="text-xs bg-gray-800 px-1.5 py-0.5 rounded">.env.example</code> 작성
+              클로드한테 <span className="text-gray-100">&quot;이거 amago hub plugin으로 정리해서 올려 줘&quot;</span> 요청
             </span>
           </li>
           <li className="flex items-start gap-3">
@@ -42,7 +45,7 @@ export default function ContributeGuide() {
               3
             </span>
             <span className="text-sm sm:text-base text-gray-300 pt-0.5">
-              PR 올리기 → 자동 비밀값 검사 → 리뷰 1명 → 머지
+              팀원 1명 검토 → 합치면 마켓에 자동 노출 ✨
             </span>
           </li>
         </ol>

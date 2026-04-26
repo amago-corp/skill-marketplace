@@ -21,6 +21,13 @@ export interface CategoryDefinition {
   skills: string[];
 }
 
+export interface PluginChild {
+  slug: string;
+  name: string;
+  description: string;
+  sourceType: "skill" | "agent" | "command";
+}
+
 export interface Skill {
   slug: string;
   name: string;
@@ -30,7 +37,7 @@ export interface Skill {
   repoDisplayName: string;
   category: string;
   categoryId: string;
-  sourceType: "skill" | "agent" | "command";
+  sourceType: "skill" | "agent" | "command" | "plugin";
   content: string;
   lastUpdated: string;
   githubUrl: string; // deprecated: sourceUrl 사용 권장
@@ -38,6 +45,8 @@ export interface Skill {
   providerType: string;
   installCommand: string;
   pluginName?: string;
+  /** sourceType === "plugin" 일 때만 채워짐 — 이 plugin에 포함된 agent/skill 목록 */
+  children?: PluginChild[];
   isNew: boolean;
 }
 

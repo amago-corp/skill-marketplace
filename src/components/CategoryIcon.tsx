@@ -29,6 +29,12 @@ export default function CategoryIcon({ category, className = "w-3.5 h-3.5" }: Ca
           <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
         </svg>
       );
+    case "package":
+      return (
+        <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" d="m7.5 7.5-3.75 1.5m0 0L7.5 10.5m-3.75-1.5v9.75A2.25 2.25 0 0 0 6 21h12a2.25 2.25 0 0 0 2.25-2.25V9m-16.5 0L12 12.75M20.25 9 12 12.75m0 0V21m0-8.25 8.25-3.375M3.75 9 12 5.25l8.25 3.75" />
+        </svg>
+      );
     default:
       return (
         <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">

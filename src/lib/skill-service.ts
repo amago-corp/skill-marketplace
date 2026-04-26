@@ -1,5 +1,5 @@
 import matter from "gray-matter";
-import { Skill, SkillRepository } from "./types";
+import { Skill, SkillRepository, PluginChild } from "./types";
 import { SkillEntry } from "./providers/types";
 import { getProvider } from "./providers/registry";
 import { buildSkillFilePath } from "./providers/constants";
@@ -132,6 +132,70 @@ export function parseSkillMd(
   };
 }
 
+/**
+ * 같은 pluginName 을 공유하는 entries 를 1개의 plugin entry 로 묶는다.
+ * pluginName 이 없는 standalone skill 은 그대로 통과.
+ */
+function groupByPlugin(skills: Skill[]): Skill[] {
+  const standalone: Skill[] = [];
+  const pluginGroups = new Map<string, Skill[]>();
+
+  for (const skill of skills) {
+    if (skill.pluginName) {
+      const arr = pluginGroups.get(skill.pluginName) ?? [];
+      arr.push(skill);
+      pluginGroups.set(skill.pluginName, arr);
+    } else {
+      standalone.push(skill);
+    }
+  }
+
+  const pluginEntries: Skill[] = [];
+  const childOrder: Record<string, number> = { agent: 0, skill: 1, command: 2 };
+
+  for (const [pluginName, members] of pluginGroups) {
+    const sorted = [...members].sort(
+      (a, b) =>
+        (childOrder[a.sourceType] ?? 9) - (childOrder[b.sourceType] ?? 9),
+    );
+    const children: PluginChild[] = sorted.map((m) => ({
+      slug: m.slug,
+      name: m.name,
+      description: m.description,
+      sourceType: m.sourceType as "skill" | "agent" | "command",
+    }));
+
+    const agentChild = sorted.find((m) => m.sourceType === "agent");
+    const representative = agentChild ?? sorted[0];
+
+    pluginEntries.push({
+      slug: pluginName,
+      name: pluginName,
+      version: representative.version,
+      description: representative.description,
+      repoId: representative.repoId,
+      repoDisplayName: representative.repoDisplayName,
+      category: "plugin",
+      categoryId: "plugin",
+      sourceType: "plugin",
+      content: "", // 상세 페이지가 children 배열 + 각 child content 를 직접 렌더
+      lastUpdated: members.reduce(
+        (latest, m) => (m.lastUpdated > latest ? m.lastUpdated : latest),
+        representative.lastUpdated,
+      ),
+      githubUrl: representative.sourceUrl,
+      sourceUrl: representative.sourceUrl,
+      providerType: representative.providerType,
+      installCommand: representative.installCommand,
+      pluginName,
+      children,
+      isNew: members.some((m) => m.isNew),
+    });
+  }
+
+  return [...standalone, ...pluginEntries];
+}
+
 export async function getAllSkills(
   repos: SkillRepository[]
 ): Promise<Skill[]> {
@@ -165,9 +229,10 @@ export async function getAllSkills(
     allSkills.push(...skills.filter((s): s is Skill => s !== null));
   }
 
-  allSkills.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
-  setCache(cacheKey, allSkills);
-  return allSkills;
+  const grouped = groupByPlugin(allSkills);
+  grouped.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
+  setCache(cacheKey, grouped);
+  return grouped;
 }
 
 export async function getSkillByName(

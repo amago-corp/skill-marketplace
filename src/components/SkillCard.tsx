@@ -40,6 +40,20 @@ export default function SkillCard({ skill }: SkillCardProps) {
         {truncatedDesc}
       </p>
 
+      {skill.sourceType === "plugin" && skill.children && skill.children.length > 0 && (
+        <div className="mb-3 flex flex-wrap gap-1.5">
+          {skill.children.map((child) => (
+            <span
+              key={`${child.sourceType}:${child.slug}`}
+              className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-medium border ${getCategoryBadgeClass(child.sourceType)}`}
+            >
+              <CategoryIcon category={child.sourceType} className="w-2.5 h-2.5" />
+              {child.name}
+            </span>
+          ))}
+        </div>
+      )}
+
       <div className="flex items-center justify-between">
         <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium border ${getCategoryBadgeClass(skill.category)}`}>
           <CategoryIcon category={skill.category} className="w-3 h-3" />

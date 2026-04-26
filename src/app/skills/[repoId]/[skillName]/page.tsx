@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import { Skill } from "@/lib/types";
 import { getCategoryBadgeClass } from "@/lib/categoryColors";
 import { ProviderIcon, getProviderLabel } from "@/components/ProviderIcon";
+import CategoryIcon from "@/components/CategoryIcon";
 import { formatDate } from "@/lib/format-date";
 
 const RELATED_PATTERN = /see\s+([\w-]+)/gi;
@@ -155,6 +156,42 @@ export default function SkillDetailPage() {
         </pre>
       </div>
 
+      {/* Plugin children — agent + skill 묶음 */}
+      {skill.sourceType === "plugin" && skill.children && skill.children.length > 0 && (
+        <div className="mb-8 rounded-xl border border-gray-800 bg-gray-900/50 p-5">
+          <span className="text-sm font-medium text-gray-400 block mb-3">
+            이 plugin 에 포함된 컴포넌트 ({skill.children.length}개)
+          </span>
+          <div className="space-y-2">
+            {skill.children.map((child) => (
+              <Link
+                key={`${child.sourceType}:${child.slug}`}
+                href={`/skills/${encodeURIComponent(skill.repoId)}/${child.slug}`}
+                className="flex items-start gap-3 rounded-lg border border-gray-800 bg-gray-900/60 p-3 hover:border-indigo-500/50 hover:bg-gray-900 transition-colors"
+              >
+                <span
+                  className={`flex-shrink-0 mt-0.5 inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-semibold border ${getCategoryBadgeClass(child.sourceType)}`}
+                >
+                  <CategoryIcon category={child.sourceType} className="w-2.5 h-2.5" />
+                  {child.sourceType}
+                </span>
+                <div className="min-w-0">
+                  <div className="text-sm font-medium text-gray-100">{child.name}</div>
+                  {child.description && (
+                    <div className="text-xs text-gray-500 line-clamp-2 mt-0.5">
+                      {child.description}
+                    </div>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
+          <p className="text-xs text-gray-500 mt-3">
+            💡 위 명령어 한 번 실행하면 이 컴포넌트들이 모두 함께 설치됩니다.
+          </p>
+        </div>
+      )}
+
       {/* Related Skills */}
       {relatedSkills.length > 0 && (
         <div className="mb-8 rounded-xl border border-gray-800 bg-gray-900/50 p-4">
@@ -176,9 +213,11 @@ export default function SkillDetailPage() {
       )}
 
       {/* Content */}
-      <div className="rounded-xl border border-gray-800 bg-gray-900/30 p-6 sm:p-8">
-        <MarkdownRenderer content={skill.content} />
-      </div>
+      {skill.content.trim().length > 0 && (
+        <div className="rounded-xl border border-gray-800 bg-gray-900/30 p-6 sm:p-8">
+          <MarkdownRenderer content={skill.content} />
+        </div>
+      )}
     </div>
   );
 }

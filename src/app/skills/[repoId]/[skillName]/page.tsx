@@ -164,10 +164,9 @@ export default function SkillDetailPage() {
           </span>
           <div className="space-y-2">
             {skill.children.map((child) => (
-              <Link
+              <div
                 key={`${child.sourceType}:${child.slug}`}
-                href={`/skills/${encodeURIComponent(skill.repoId)}/${child.slug}`}
-                className="flex items-start gap-3 rounded-lg border border-gray-800 bg-gray-900/60 p-3 hover:border-indigo-500/50 hover:bg-gray-900 transition-colors"
+                className="flex items-start gap-3 rounded-lg border border-gray-800 bg-gray-900/60 p-3"
               >
                 <span
                   className={`flex-shrink-0 mt-0.5 inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-semibold border ${getCategoryBadgeClass(child.sourceType)}`}
@@ -183,7 +182,7 @@ export default function SkillDetailPage() {
                     </div>
                   )}
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
           <p className="text-xs text-gray-500 mt-3">

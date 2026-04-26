@@ -1,7 +1,6 @@
 export default function QuickStartGuide() {
   return (
-    <section className="max-w-3xl mx-auto mb-10">
-      <details className="group rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-gray-900/80 to-gray-900/40 shadow-lg shadow-indigo-500/5">
+    <details className="group rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-gray-900/80 to-gray-900/40 shadow-lg shadow-indigo-500/5 h-full">
         <summary className="cursor-pointer list-none flex items-center justify-between gap-3 px-6 sm:px-7 py-5">
           <div className="flex items-center gap-2">
             <span className="text-xl">💡</span>
@@ -90,6 +89,5 @@ gh auth login`}</code>
           </details>
         </div>
       </details>
-    </section>
   );
 }

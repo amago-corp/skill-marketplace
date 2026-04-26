@@ -68,7 +68,7 @@ export default function Home() {
       {/* Hero */}
       <section className="text-center mb-12">
         <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-          Skill Marketplace
+          amago Agent/Skill Hub
         </h1>
         <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-6">
           AI Agent의 Skills, Agents, Commands를 검색하고 설치하세요.

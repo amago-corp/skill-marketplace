@@ -17,7 +17,7 @@ export default function SkillCard({ skill }: SkillCardProps) {
 
   return (
     <Link
-      href={`/skills/${skill.repoId}/${skill.slug}`}
+      href={`/skills/${encodeURIComponent(skill.repoId)}/${skill.slug}`}
       className={`group relative block rounded-xl ${skill.isNew ? "border-2 border-lime-400/40" : "border border-gray-800"} bg-gray-900/50 p-5 transition-all hover:border-indigo-500/50 hover:bg-gray-900 hover:shadow-lg hover:shadow-indigo-500/5`}
     >
       <div className="flex items-start justify-between mb-3">

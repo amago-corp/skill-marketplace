@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 import SkillCard from "@/components/SkillCard";
 import SearchBar from "@/components/SearchBar";
 import CategoryFilter from "@/components/CategoryFilter";
@@ -9,6 +10,7 @@ import SkillCardSkeleton from "@/components/SkillCardSkeleton";
 import EmptyRepoState from "@/components/EmptyRepoState";
 import QuickStartGuide from "@/components/QuickStartGuide";
 import ContributeGuide from "@/components/ContributeGuide";
+import CountUp from "@/components/CountUp";
 import { Skill } from "@/lib/types";
 
 const AddRepoModal = dynamic(() => import("@/components/AddRepoModal"), {
@@ -79,18 +81,18 @@ export default function Home() {
           <div className="flex items-center justify-center gap-3 flex-wrap">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 border border-stone-300 px-3 py-1 text-xs text-stone-700">
               <span aria-hidden="true">🧰</span>
-              AI 도구(AI asset) {data.total}
+              AI 도구(AI asset) <CountUp value={data.total} />
             </span>
             <button
               onClick={() => setRepoModalOpen(true)}
               className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 border border-stone-300 hover:border-amber-500/60 hover:bg-stone-200 px-3 py-1 text-xs text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
             >
               <span aria-hidden="true">🏘</span>
-              작업장(workspace) {data.repoCount}
+              작업장(workspace) <CountUp value={data.repoCount} />
             </button>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 border border-stone-300 px-3 py-1 text-xs text-stone-700">
               <span aria-hidden="true">🗂</span>
-              분류 {data.categories.length}
+              분류 <CountUp value={data.categories.length} />
             </span>
           </div>
         )}
@@ -184,11 +186,19 @@ export default function Home() {
             </p>
           </div>
         ) : data && data.skills.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <motion.div
+            key={`${query}|${selectedCategory}`}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: { transition: { staggerChildren: 0.06, delayChildren: 0.04 } },
+            }}
+          >
             {data.skills.map((skill) => (
               <SkillCard key={`${skill.repoId}-${skill.category}-${skill.name}`} skill={skill} />
             ))}
-          </div>
+          </motion.div>
         ) : null}
       </section>
 

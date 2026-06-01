@@ -1,12 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Skill } from "@/lib/types";
 import { getCategoryBadgeClass, getCategoryEmoji, NEW_BADGE_CLASS } from "@/lib/categoryColors";
 
 interface SkillCardProps {
   skill: Skill;
 }
+
+const MotionLink = motion.create(Link);
+
+export const skillCardVariants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function SkillCard({ skill }: SkillCardProps) {
   const truncatedDesc =
@@ -15,9 +23,12 @@ export default function SkillCard({ skill }: SkillCardProps) {
       : skill.description;
 
   return (
-    <Link
+    <MotionLink
       href={`/skills/${encodeURIComponent(skill.repoId)}/${skill.slug}`}
-      className={`group relative block rounded-xl ${skill.isNew ? "border-2 border-emerald-300" : "border border-stone-300"} bg-white/80 p-5 transition-all duration-200 hover:border-amber-600/50 hover:bg-white hover:shadow-md hover:shadow-amber-700/10 hover:rotate-[0.5deg] hover:scale-[1.02]`}
+      variants={skillCardVariants}
+      whileHover={{ rotate: 0.5, scale: 1.02, transition: { type: "spring", stiffness: 280, damping: 18 } }}
+      whileTap={{ scale: 0.99 }}
+      className={`group relative block rounded-xl ${skill.isNew ? "border-2 border-emerald-300" : "border border-stone-300"} bg-white/80 p-5 transition-colors duration-200 hover:border-amber-600/50 hover:bg-white hover:shadow-md hover:shadow-amber-700/10`}
     >
       <div className="flex items-start justify-between mb-2">
         <div className="flex items-center gap-2 min-w-0">
@@ -70,6 +81,6 @@ export default function SkillCard({ skill }: SkillCardProps) {
           </svg>
         </span>
       </div>
-    </Link>
+    </MotionLink>
   );
 }

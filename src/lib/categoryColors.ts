@@ -10,31 +10,31 @@ interface CategoryStyle {
 const categoryStyles: Record<CategoryType, CategoryStyle> = {
   command: {
     badge:
-      "bg-amber-100 text-amber-800 border-amber-300",
+      "bg-amber-50 text-amber-900 border-amber-200",
     filterSelected:
-      "bg-amber-600 text-amber-50 shadow-sm",
+      "bg-amber-700 text-amber-50 shadow-sm",
     icon: "terminal",
     emoji: "⚡",
   },
   agent: {
     badge:
-      "bg-violet-100 text-violet-800 border-violet-300",
+      "bg-violet-50 text-violet-900 border-violet-200",
     filterSelected:
-      "bg-violet-600 text-violet-50 shadow-sm",
+      "bg-violet-700 text-violet-50 shadow-sm",
     icon: "cpu",
     emoji: "🤖",
   },
   skill: {
     badge:
-      "bg-teal-100 text-teal-800 border-teal-300",
+      "bg-teal-50 text-teal-900 border-teal-200",
     filterSelected:
-      "bg-teal-600 text-teal-50 shadow-sm",
+      "bg-teal-700 text-teal-50 shadow-sm",
     icon: "zap",
     emoji: "🔨",
   },
   plugin: {
     badge:
-      "bg-stone-200 text-stone-800 border-stone-400",
+      "bg-stone-100 text-stone-800 border-stone-300",
     filterSelected:
       "bg-stone-700 text-stone-50 shadow-sm",
     icon: "package",
@@ -42,25 +42,25 @@ const categoryStyles: Record<CategoryType, CategoryStyle> = {
   },
   prompt: {
     badge:
-      "bg-sky-100 text-sky-800 border-sky-300",
+      "bg-sky-50 text-sky-900 border-sky-200",
     filterSelected:
-      "bg-sky-600 text-sky-50 shadow-sm",
+      "bg-sky-700 text-sky-50 shadow-sm",
     icon: "message-square",
     emoji: "📜",
   },
   knowledge: {
     badge:
-      "bg-rose-100 text-rose-800 border-rose-300",
+      "bg-rose-50 text-rose-900 border-rose-200",
     filterSelected:
-      "bg-rose-600 text-rose-50 shadow-sm",
+      "bg-rose-700 text-rose-50 shadow-sm",
     icon: "book-open",
     emoji: "📚",
   },
 };
 
 const fallback: CategoryStyle = {
-  badge: "bg-stone-100 text-stone-700 border-stone-300",
-  filterSelected: "bg-stone-600 text-stone-50 shadow-sm",
+  badge: "bg-stone-50 text-stone-800 border-stone-200",
+  filterSelected: "bg-stone-700 text-stone-50 shadow-sm",
   icon: "box",
   emoji: "📦",
 };
@@ -81,4 +81,4 @@ export function getCategoryEmoji(category: string): string {
   return (categoryStyles[category as CategoryType] ?? fallback).emoji;
 }
 
-export const NEW_BADGE_CLASS = "bg-lime-100 text-lime-800 border-lime-400";
+export const NEW_BADGE_CLASS = "bg-emerald-50 text-emerald-800 border-emerald-200";

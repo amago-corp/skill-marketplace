@@ -19,7 +19,7 @@ export default function CategoryFilter({
         onClick={() => onSelect("")}
         className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all ${
           selected === ""
-            ? "bg-amber-600 text-amber-50 shadow-sm"
+            ? "bg-amber-700 text-amber-50 shadow-sm"
             : "bg-stone-100 text-stone-600 hover:bg-stone-200 hover:text-stone-900 border border-stone-300"
         }`}
       >

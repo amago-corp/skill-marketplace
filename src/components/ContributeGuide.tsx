@@ -25,7 +25,7 @@ export default function ContributeGuide() {
         </p>
         <ol className="space-y-3 mb-5">
           <li className="flex items-start gap-3">
-            <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold">
+            <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">
               1
             </span>
             <span className="text-sm sm:text-base text-stone-600 pt-0.5">
@@ -33,7 +33,7 @@ export default function ContributeGuide() {
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold">
+            <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">
               2
             </span>
             <span className="text-sm sm:text-base text-stone-600 pt-0.5">
@@ -44,7 +44,7 @@ export default function ContributeGuide() {
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold">
+            <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">
               3
             </span>
             <span className="text-sm sm:text-base text-stone-600 pt-0.5">
@@ -59,7 +59,7 @@ export default function ContributeGuide() {
             href="https://github.com/amago-corp/agent-hub/blob/main/CONTRIBUTING.md"
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-xs text-emerald-400 hover:text-emerald-300 break-all"
+            className="block text-xs text-emerald-700 hover:text-emerald-800 break-all"
           >
             ① 기여 규칙: github.com/amago-corp/agent-hub/blob/main/CONTRIBUTING.md
           </a>
@@ -67,7 +67,7 @@ export default function ContributeGuide() {
             href="https://github.com/amago-corp/agent-hub/tree/main/plugins/data-analyst"
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-xs text-emerald-400 hover:text-emerald-300 break-all"
+            className="block text-xs text-emerald-700 hover:text-emerald-800 break-all"
           >
             ② 예시 plugin: github.com/amago-corp/agent-hub/tree/main/plugins/data-analyst
           </a>
@@ -108,7 +108,7 @@ export default function ContributeGuide() {
               href="https://github.com/amago-corp/agent-hub/blob/main/CONTRIBUTING.md"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block text-emerald-400 hover:text-emerald-300 underline underline-offset-2 text-xs"
+              className="inline-block text-emerald-700 hover:text-emerald-800 underline underline-offset-2 text-xs"
             >
               전체 기여 가이드 보기 →
             </a>

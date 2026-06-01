@@ -22,7 +22,7 @@ export default function QuickStartGuide() {
         <div className="px-6 sm:px-7 pb-6 sm:pb-7">
           <ol className="space-y-3 mb-5">
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-500/20 text-amber-700 text-xs font-semibold">
+              <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold">
                 1
               </span>
               <span className="text-sm sm:text-base text-stone-600 pt-0.5">
@@ -30,7 +30,7 @@ export default function QuickStartGuide() {
               </span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-500/20 text-amber-700 text-xs font-semibold">
+              <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold">
                 2
               </span>
               <span className="text-sm sm:text-base text-stone-600 pt-0.5">
@@ -38,7 +38,7 @@ export default function QuickStartGuide() {
               </span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-500/20 text-amber-700 text-xs font-semibold">
+              <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold">
                 3
               </span>
               <span className="text-sm sm:text-base text-stone-600 pt-0.5">

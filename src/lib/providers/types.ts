@@ -2,7 +2,7 @@ import { SkillRepository } from "../types";
 
 export interface SkillEntry {
   name: string;
-  sourceType: "skill" | "agent" | "command";
+  sourceType: "skill" | "agent" | "command" | "prompt" | "knowledge";
   sourcePath: string;
   flat: boolean; // true = {sourcePath}/{name}.md, false = {sourcePath}/{name}/SKILL.md
   pluginName?: string;

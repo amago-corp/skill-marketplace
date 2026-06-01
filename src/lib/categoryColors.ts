@@ -1,4 +1,4 @@
-export type CategoryType = "command" | "agent" | "skill" | "plugin";
+export type CategoryType = "command" | "agent" | "skill" | "plugin" | "prompt" | "knowledge";
 
 interface CategoryStyle {
   badge: string;
@@ -34,6 +34,20 @@ const categoryStyles: Record<CategoryType, CategoryStyle> = {
     filterSelected:
       "bg-indigo-600 text-white shadow-sm",
     icon: "package",
+  },
+  prompt: {
+    badge:
+      "bg-sky-500/15 text-sky-300 border-sky-400/30",
+    filterSelected:
+      "bg-sky-600 text-white shadow-sm",
+    icon: "message-square",
+  },
+  knowledge: {
+    badge:
+      "bg-rose-500/15 text-rose-300 border-rose-400/30",
+    filterSelected:
+      "bg-rose-600 text-white shadow-sm",
+    icon: "book-open",
   },
 };
 

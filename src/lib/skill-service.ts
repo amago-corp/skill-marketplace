@@ -85,7 +85,7 @@ export function parseSkillMd(
   raw: string,
   skillName: string,
   repo: SkillRepository,
-  sourceType: "skill" | "agent" | "command",
+  sourceType: "skill" | "agent" | "command" | "prompt" | "knowledge",
   sourcePath: string,
   pluginName?: string,
   lastCommitDate?: string
@@ -151,7 +151,7 @@ function groupByPlugin(skills: Skill[]): Skill[] {
   }
 
   const pluginEntries: Skill[] = [];
-  const childOrder: Record<string, number> = { agent: 0, skill: 1, command: 2 };
+  const childOrder: Record<string, number> = { agent: 0, skill: 1, command: 2, prompt: 3, knowledge: 4 };
 
   for (const [pluginName, members] of pluginGroups) {
     const sorted = [...members].sort(
@@ -162,7 +162,7 @@ function groupByPlugin(skills: Skill[]): Skill[] {
       slug: m.slug,
       name: m.name,
       description: m.description,
-      sourceType: m.sourceType as "skill" | "agent" | "command",
+      sourceType: m.sourceType as "skill" | "agent" | "command" | "prompt" | "knowledge",
     }));
 
     const agentChild = sorted.find((m) => m.sourceType === "agent");

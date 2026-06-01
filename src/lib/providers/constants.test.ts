@@ -17,12 +17,19 @@ describe("constants", () => {
   });
 
   describe("SOURCE_DIRS", () => {
-    it("skills/agents/commands 3개 항목을 포함", () => {
-      expect(SOURCE_DIRS).toHaveLength(3);
+    it("루트 + .claude/ prefix 합쳐 10개 항목 포함", () => {
+      expect(SOURCE_DIRS).toHaveLength(10);
       expect(SOURCE_DIRS).toEqual([
         { path: "skills", type: "skill" },
         { path: "agents", type: "agent" },
         { path: "commands", type: "command" },
+        { path: "prompts", type: "prompt" },
+        { path: "knowledge", type: "knowledge" },
+        { path: ".claude/skills", type: "skill" },
+        { path: ".claude/agents", type: "agent" },
+        { path: ".claude/commands", type: "command" },
+        { path: ".claude/prompts", type: "prompt" },
+        { path: ".claude/knowledge", type: "knowledge" },
       ]);
     });
   });

@@ -40,7 +40,7 @@ export class GitHubProvider implements RepositoryProviderAdapter {
         return {
           valid: false,
           error:
-            "skills, agents, commands 경로에서 SKILL.md 파일을 찾을 수 없습니다.",
+            "skills, agents, commands, prompts, knowledge 경로에서 AI 자산을 찾을 수 없습니다.",
         };
       }
       return { valid: true, skillCount: entries.length };

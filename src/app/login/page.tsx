@@ -4,8 +4,8 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-950 px-4">
       <div className="w-full max-w-sm rounded-2xl border border-gray-800 bg-gray-900/60 p-8 text-center shadow-2xl">
-        <h1 className="text-2xl font-semibold text-white">amago hub</h1>
-        <p className="mt-2 text-sm text-gray-400">사내 에이전트/스킬 마켓 — 로그인 후 접근 가능합니다.</p>
+        <h1 className="text-2xl font-semibold text-white">amago AI Hub</h1>
+        <p className="mt-2 text-sm text-gray-400">사내 AI 자산 마켓 — 로그인 후 접근 가능합니다.</p>
         <form
           action={async () => {
             "use server";

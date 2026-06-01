@@ -1,6 +1,6 @@
 # Skill Marketplace
 
-AI Agent의 Skills, Agents, Commands를 한 곳에서 검색하고 설치할 수 있는 웹 마켓플레이스입니다.
+AI 자산 (스킬·에이전트·프롬프트·지식·도구) 을 한 곳에서 검색하고 설치할 수 있는 웹 마켓플레이스입니다.
 
 GitHub 또는 Bitbucket Server 저장소를 등록하면 자동으로 스킬을 수집하여 웹 UI로 제공합니다.
 
@@ -14,7 +14,7 @@ GitHub 또는 Bitbucket Server 저장소를 등록하면 자동으로 스킬을 
 ### 스킬 탐색 및 검색
 
 - **실시간 검색** — 이름, 설명, 카테고리를 대상으로 키워드 검색 
-- **카테고리 필터링** — `skill` (녹색), `agent` (보라), `command` (노란색) 타입별 필터
+- **카테고리 필터링** — `skill` (녹색), `agent` (보라), `command` (노란색), `prompt` (하늘색), `knowledge` (분홍색) 타입별 필터
 - **반응형 카드 그리드** — 모바일 1열, 태블릿 2열, 데스크탑 3열
 - **스킬 상세 페이지** — Markdown(GFM) 기반 문서 렌더링 (코드 하이라이팅 포함)
 - **관련 스킬 링크** — 설명에 `see <skill-name>` 패턴이 있으면 자동으로 관련 스킬 연결
@@ -31,10 +31,12 @@ GitHub와 Bitbucket Server를 모두 지원합니다.
 - **동적 저장소 추가** — 웹 UI에서 저장소 URL 입력만으로 등록
 - **URL 자동 파싱** — URL을 붙여넣으면 provider, owner, repo, baseUrl을 자동 감지
 - **저장소 검증** — 추가 전 저장소 접근 가능 여부와 스킬 존재 여부를 자동 확인
-- 3가지 소스 디렉토리 자동 탐지:
+- 5가지 소스 디렉토리 자동 탐지 (루트 또는 `.claude/` prefix, `plugins/{name}/` 하위도 동일):
   - `skills/` — 중첩 디렉토리 구조 (`skills/my-skill/SKILL.md`) 또는 플랫 파일 (`skills/my-skill.md`)
   - `agents/` — 플랫 파일 구조 (`agents/my-agent.md`)
   - `commands/` — 플랫 파일 구조 (`commands/my-command.md`)
+  - `prompts/` — 플랫 파일 구조 (`prompts/my-prompt.md`)
+  - `knowledge/` — 플랫 파일 구조 (`knowledge/my-doc.md`)
 
 ### 스킬 상세 및 설치
 
@@ -125,8 +127,12 @@ your-repo/
 │   └── simple-skill.md    # 플랫 파일 방식
 ├── agents/
 │   └── my-agent.md
-└── commands/
-    └── my-command.md
+├── commands/
+│   └── my-command.md
+├── prompts/
+│   └── my-prompt.md
+└── knowledge/
+    └── my-doc.md
 ```
 
 #### Plugin 구조 (플러그인 단위)
@@ -140,8 +146,12 @@ your-repo/
         │       └── SKILL.md
         ├── agents/
         │   └── my-agent.md
-        └── commands/
-            └── my-command.md
+        ├── commands/
+        │   └── my-command.md
+        ├── prompts/
+        │   └── my-prompt.md
+        └── knowledge/
+            └── my-doc.md
 ```
 
 두 구조를 하나의 저장소에서 함께 사용할 수 있습니다.

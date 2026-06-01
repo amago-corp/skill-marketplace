@@ -7,8 +7,8 @@ import CacheClearButton from "@/components/CacheClearButton";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "amago Agent/Skill Hub",
-  description: "아마고 사내 에이전트/스킬 허브 — 검색·탐색·설치",
+  title: "amago AI Hub",
+  description: "amago AI Hub — 사내 AI 자산 검색·탐색·설치",
 };
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
                   </svg>
                 </div>
                 <span className="text-xl font-semibold text-white">
-                  amago Hub
+                  amago AI Hub
                 </span>
               </Link>
               <nav className="flex items-center gap-6">
@@ -52,7 +52,7 @@ export default function RootLayout({
         <footer className="border-t border-gray-800 mt-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
             <p className="text-center text-sm text-gray-500">
-              amago Agent/Skill Hub — 사내 에이전트/스킬 검색·설치
+              amago AI Hub — 사내 AI 자산 검색·설치
             </p>
           </div>
         </footer>

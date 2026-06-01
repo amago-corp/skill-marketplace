@@ -25,7 +25,7 @@ export interface PluginChild {
   slug: string;
   name: string;
   description: string;
-  sourceType: "skill" | "agent" | "command";
+  sourceType: "skill" | "agent" | "command" | "prompt" | "knowledge";
 }
 
 export interface Skill {
@@ -37,7 +37,7 @@ export interface Skill {
   repoDisplayName: string;
   category: string;
   categoryId: string;
-  sourceType: "skill" | "agent" | "command" | "plugin";
+  sourceType: "skill" | "agent" | "command" | "plugin" | "prompt" | "knowledge";
   content: string;
   lastUpdated: string;
   githubUrl: string; // deprecated: sourceUrl 사용 권장

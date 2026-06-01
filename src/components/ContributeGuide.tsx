@@ -37,7 +37,7 @@ export default function ContributeGuide() {
               2
             </span>
             <span className="text-sm sm:text-base text-gray-300 pt-0.5">
-              클로드한테 <span className="text-gray-100">&quot;이거 amago hub plugin으로 정리해서 올려 줘&quot;</span> 요청
+              클로드한테 <span className="text-gray-100">&quot;이거 amago AI Hub plugin으로 정리해서 올려 줘&quot;</span> 요청
               <span className="block text-xs text-gray-500 mt-1">
                 + 아래 두 링크 같이 붙여넣으면 클로드가 구조·규칙·예시를 보고 알아서 정리해요 ↓
               </span>

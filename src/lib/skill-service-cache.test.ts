@@ -158,6 +158,24 @@ describe("skill-service cache & orchestration", () => {
       const skill = await getSkillByName([repo], "nonexistent", "skill");
       expect(skill).toBeNull();
     });
+
+    it("prompt/knowledge entry 도 발견·집계되고 sourceType 보존", async () => {
+      const entries: SkillEntry[] = [
+        { name: "p1", sourceType: "prompt", sourcePath: "prompts", flat: true },
+        { name: "k1", sourceType: "knowledge", sourcePath: "knowledge", flat: true },
+      ];
+      mockGetSkillDirectories.mockResolvedValue(entries);
+      mockGetSkillContent.mockResolvedValue("---\nname: X\n---\ncontent");
+
+      const skills = await getAllSkills([repo]);
+
+      expect(skills).toHaveLength(2);
+      const byType = Object.fromEntries(skills.map((s) => [s.sourceType, s]));
+      expect(byType.prompt).toBeDefined();
+      expect(byType.knowledge).toBeDefined();
+      expect(byType.prompt.categoryId).toBe("prompt");
+      expect(byType.knowledge.categoryId).toBe("knowledge");
+    });
   });
 
   describe("isNew integration (커밋 날짜 연동)", () => {

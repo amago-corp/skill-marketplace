@@ -70,10 +70,10 @@ export default function Home() {
       {/* Hero */}
       <section className="text-center mb-12">
         <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-          amago Agent/Skill Hub
+          amago AI Hub
         </h1>
         <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-6">
-          AI Agent의 Skills, Agents, Commands를 검색하고 설치하세요.
+          AI 자산 (스킬·에이전트·프롬프트·도구) 을 검색·설치하세요.
         </p>
         {data && !loading && data.repoCount > 0 && (
           <div className="flex items-center justify-center gap-3 flex-wrap">

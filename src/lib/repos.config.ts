@@ -8,6 +8,6 @@ export const repositories: SkillRepository[] = [
     repo: "agent-hub",
     branch: "main",
     displayName: "amago agent-hub",
-    description: "아마고 사내 에이전트/스킬 허브",
+    description: "amago AI Hub — 사내 AI 자산 허브",
   },
 ];

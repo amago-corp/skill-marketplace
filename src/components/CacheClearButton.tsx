@@ -37,7 +37,7 @@ export default function CacheClearButton() {
       onClick={handleClick}
       disabled={status === "clearing"}
       title="캐시 초기화"
-      className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors disabled:opacity-60 cursor-pointer disabled:cursor-wait"
+      className="inline-flex items-center gap-1.5 text-sm text-stone-500 hover:text-stone-900 transition-colors disabled:opacity-60 cursor-pointer disabled:cursor-wait"
     >
       {status === "done" ? (
         <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -45,7 +45,7 @@ export default function CacheClearButton() {
         </svg>
       ) : (
         <svg
-          className={`w-4 h-4 ${status === "clearing" ? "animate-spin text-indigo-400" : ""}`}
+          className={`w-4 h-4 ${status === "clearing" ? "animate-spin text-amber-700" : ""}`}
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={2}

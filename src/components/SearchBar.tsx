@@ -33,7 +33,7 @@ export default function SearchBar({
     <div className="relative">
       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
         <svg
-          className="h-5 w-5 text-gray-500"
+          className="h-5 w-5 text-stone-400"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
@@ -51,12 +51,12 @@ export default function SearchBar({
         value={value}
         onChange={(e) => handleChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-gray-700 bg-gray-900 py-3 pl-11 pr-4 text-sm text-white placeholder-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-colors"
+        className="w-full rounded-xl border border-stone-300 bg-stone-50 py-3 pl-11 pr-4 text-sm text-stone-900 placeholder-stone-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-colors"
       />
       {value && (
         <button
           onClick={() => handleChange("")}
-          className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500 hover:text-gray-300"
+          className="absolute inset-y-0 right-0 flex items-center pr-4 text-stone-400 hover:text-stone-600"
         >
           <svg
             className="h-4 w-4"

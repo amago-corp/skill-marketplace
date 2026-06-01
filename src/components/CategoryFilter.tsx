@@ -1,7 +1,6 @@
 "use client";
 
-import { getCategoryFilterSelectedClass } from "@/lib/categoryColors";
-import CategoryIcon from "@/components/CategoryIcon";
+import { getCategoryFilterSelectedClass, getCategoryEmoji } from "@/lib/categoryColors";
 
 interface CategoryFilterProps {
   categories: { id: string; name: string }[];
@@ -20,11 +19,11 @@ export default function CategoryFilter({
         onClick={() => onSelect("")}
         className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all ${
           selected === ""
-            ? "bg-indigo-600 text-white shadow-sm"
-            : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-200"
+            ? "bg-amber-600 text-amber-50 shadow-sm"
+            : "bg-stone-100 text-stone-600 hover:bg-stone-200 hover:text-stone-900 border border-stone-300"
         }`}
       >
-        All
+        전체 AI 도구
       </button>
       {categories.map((cat) => (
         <button
@@ -33,10 +32,10 @@ export default function CategoryFilter({
           className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-medium transition-all ${
             selected === cat.id
               ? getCategoryFilterSelectedClass(cat.id)
-              : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-200"
+              : "bg-stone-100 text-stone-600 hover:bg-stone-200 hover:text-stone-900 border border-stone-300"
           }`}
         >
-          <CategoryIcon category={cat.id} className="w-3.5 h-3.5" />
+          <span aria-hidden="true">{getCategoryEmoji(cat.id)}</span>
           {cat.name}
         </button>
       ))}

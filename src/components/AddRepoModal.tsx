@@ -188,13 +188,13 @@ export default function AddRepoModal({ open, onClose, onSuccess }: AddRepoModalP
       />
 
       {/* Modal */}
-      <div className="relative w-full max-w-lg rounded-2xl bg-gray-900 border border-gray-800 shadow-2xl">
+      <div className="relative w-full max-w-lg rounded-2xl bg-stone-50 border border-stone-300 shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-800">
-          <h2 className="text-lg font-semibold text-white">저장소 추가</h2>
+        <div className="flex items-center justify-between px-6 py-5 border-b border-stone-300">
+          <h2 className="text-lg font-semibold text-stone-900">저장소 추가</h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
+            className="text-stone-400 hover:text-stone-600 transition-colors cursor-pointer"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -206,7 +206,7 @@ export default function AddRepoModal({ open, onClose, onSuccess }: AddRepoModalP
         <form onSubmit={handleSubmit} className="px-6 py-5 space-y-4">
           {/* Provider 선택 */}
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1.5">Provider</label>
+            <label className="block text-sm font-medium text-stone-500 mb-1.5">Provider</label>
             <div className="flex gap-2">
               {PROVIDERS.map((p) => (
                 <button
@@ -215,8 +215,8 @@ export default function AddRepoModal({ open, onClose, onSuccess }: AddRepoModalP
                   onClick={() => setForm((prev) => ({ ...prev, provider: p.id }))}
                   className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium border transition-colors cursor-pointer ${
                     form.provider === p.id
-                      ? "border-indigo-500 bg-indigo-500/10 text-indigo-400"
-                      : "border-gray-700 bg-gray-800 text-gray-400 hover:border-gray-600 hover:text-gray-300"
+                      ? "border-amber-500 bg-amber-500/10 text-amber-700"
+                      : "border-stone-300 bg-stone-100 text-stone-500 hover:border-stone-400 hover:text-stone-600"
                   }`}
                 >
                   <ProviderIcon provider={p.id} className="h-4 w-4" />
@@ -228,8 +228,8 @@ export default function AddRepoModal({ open, onClose, onSuccess }: AddRepoModalP
 
           {/* Repository URL */}
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1.5">
-              저장소 URL <span className="text-gray-600 font-normal">(선택 — 자동 파싱)</span>
+            <label className="block text-sm font-medium text-stone-500 mb-1.5">
+              저장소 URL <span className="text-stone-400 font-normal">(선택 — 자동 파싱)</span>
             </label>
             <input
               type="text"
@@ -237,14 +237,14 @@ export default function AddRepoModal({ open, onClose, onSuccess }: AddRepoModalP
               value={form.repoUrl}
               onChange={handleUrlChange}
               placeholder="https://github.com/owner/repo"
-              className="w-full rounded-lg bg-gray-800 border border-gray-700 text-white text-sm px-3.5 py-2.5 placeholder-gray-600 focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full rounded-lg bg-stone-100 border border-stone-300 text-stone-900 text-sm px-3.5 py-2.5 placeholder-stone-400 focus:outline-none focus:border-amber-500 transition-colors"
             />
           </div>
 
           {/* Owner / Repo */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-1.5">
+              <label className="block text-sm font-medium text-stone-500 mb-1.5">
                 {currentProvider.ownerLabel} <span className="text-red-500">*</span>
               </label>
               <input
@@ -254,11 +254,11 @@ export default function AddRepoModal({ open, onClose, onSuccess }: AddRepoModalP
                 onChange={handleChange}
                 placeholder={form.provider === "bitbucket" ? "project-key" : "username"}
                 required
-                className="w-full rounded-lg bg-gray-800 border border-gray-700 text-white text-sm px-3.5 py-2.5 placeholder-gray-600 focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full rounded-lg bg-stone-100 border border-stone-300 text-stone-900 text-sm px-3.5 py-2.5 placeholder-stone-400 focus:outline-none focus:border-amber-500 transition-colors"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-1.5">
+              <label className="block text-sm font-medium text-stone-500 mb-1.5">
                 Repo <span className="text-red-500">*</span>
               </label>
               <input
@@ -268,27 +268,27 @@ export default function AddRepoModal({ open, onClose, onSuccess }: AddRepoModalP
                 onChange={handleChange}
                 placeholder="repository-name"
                 required
-                className="w-full rounded-lg bg-gray-800 border border-gray-700 text-white text-sm px-3.5 py-2.5 placeholder-gray-600 focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full rounded-lg bg-stone-100 border border-stone-300 text-stone-900 text-sm px-3.5 py-2.5 placeholder-stone-400 focus:outline-none focus:border-amber-500 transition-colors"
               />
             </div>
           </div>
 
           {/* Branch */}
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1.5">Branch</label>
+            <label className="block text-sm font-medium text-stone-500 mb-1.5">Branch</label>
             <input
               type="text"
               name="branch"
               value={form.branch}
               onChange={handleChange}
               placeholder="main"
-              className="w-full rounded-lg bg-gray-800 border border-gray-700 text-white text-sm px-3.5 py-2.5 placeholder-gray-600 focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full rounded-lg bg-stone-100 border border-stone-300 text-stone-900 text-sm px-3.5 py-2.5 placeholder-stone-400 focus:outline-none focus:border-amber-500 transition-colors"
             />
           </div>
 
           {/* Display Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1.5">
+            <label className="block text-sm font-medium text-stone-500 mb-1.5">
               표시 이름 <span className="text-red-500">*</span>
             </label>
             <input
@@ -298,14 +298,14 @@ export default function AddRepoModal({ open, onClose, onSuccess }: AddRepoModalP
               onChange={handleChange}
               placeholder="My Skills"
               required
-              className="w-full rounded-lg bg-gray-800 border border-gray-700 text-white text-sm px-3.5 py-2.5 placeholder-gray-600 focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full rounded-lg bg-stone-100 border border-stone-300 text-stone-900 text-sm px-3.5 py-2.5 placeholder-stone-400 focus:outline-none focus:border-amber-500 transition-colors"
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1.5">
-              설명 <span className="text-gray-600 font-normal">(선택)</span>
+            <label className="block text-sm font-medium text-stone-500 mb-1.5">
+              설명 <span className="text-stone-400 font-normal">(선택)</span>
             </label>
             <input
               type="text"
@@ -313,7 +313,7 @@ export default function AddRepoModal({ open, onClose, onSuccess }: AddRepoModalP
               value={form.description}
               onChange={handleChange}
               placeholder="저장소 설명"
-              className="w-full rounded-lg bg-gray-800 border border-gray-700 text-white text-sm px-3.5 py-2.5 placeholder-gray-600 focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full rounded-lg bg-stone-100 border border-stone-300 text-stone-900 text-sm px-3.5 py-2.5 placeholder-stone-400 focus:outline-none focus:border-amber-500 transition-colors"
             />
           </div>
 
@@ -333,14 +333,14 @@ export default function AddRepoModal({ open, onClose, onSuccess }: AddRepoModalP
               type="button"
               onClick={onClose}
               disabled={isLoading}
-              className="rounded-lg px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-gray-800 transition-colors cursor-pointer disabled:opacity-50"
+              className="rounded-lg px-4 py-2 text-sm text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-colors cursor-pointer disabled:opacity-50"
             >
               취소
             </button>
             <button
               type="submit"
               disabled={isLoading}
-              className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 text-white text-sm font-medium px-4 py-2 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-lg bg-amber-600 hover:bg-amber-500 disabled:opacity-60 text-stone-900 text-sm font-medium px-4 py-2 transition-colors cursor-pointer"
             >
               {isLoading && (
                 <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">

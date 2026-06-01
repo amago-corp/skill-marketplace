@@ -69,35 +69,28 @@ export default function Home() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
       {/* Hero */}
       <section className="text-center mb-12">
-        <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-          amago AI Hub
+        <h1 className="text-4xl sm:text-5xl font-bold text-stone-900 mb-4">
+          🧰 amago AI Hub
         </h1>
-        <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-6">
-          AI 자산 (스킬·에이전트·프롬프트·도구) 을 검색·설치하세요.
+        <p className="text-lg text-stone-600 max-w-2xl mx-auto mb-6">
+          장인의 손길이 담긴 AI 도구를 자유롭게 가져가세요
         </p>
         {data && !loading && data.repoCount > 0 && (
           <div className="flex items-center justify-center gap-3 flex-wrap">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-800 border border-gray-700 px-3 py-1 text-xs text-gray-300">
-              <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
-              </svg>
-              {data.total} items
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 border border-stone-300 px-3 py-1 text-xs text-stone-700">
+              <span aria-hidden="true">🧰</span>
+              AI 도구(AI asset) {data.total}
             </span>
             <button
               onClick={() => setRepoModalOpen(true)}
-              className="inline-flex items-center gap-1.5 rounded-full bg-gray-800 border border-gray-700 hover:border-indigo-500/50 hover:bg-gray-700 px-3 py-1 text-xs text-gray-300 hover:text-white transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 border border-stone-300 hover:border-amber-500/60 hover:bg-stone-200 px-3 py-1 text-xs text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
             >
-              <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
-              </svg>
-              {data.repoCount} repos
+              <span aria-hidden="true">🏘</span>
+              작업장(workspace) {data.repoCount}
             </button>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-800 border border-gray-700 px-3 py-1 text-xs text-gray-300">
-              <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6Z" />
-              </svg>
-              {data.categories.length} categories
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-stone-100 border border-stone-300 px-3 py-1 text-xs text-stone-700">
+              <span aria-hidden="true">🗂</span>
+              분류 {data.categories.length}
             </span>
           </div>
         )}
@@ -114,17 +107,17 @@ export default function Home() {
         <div className="flex-1">
           <SearchBar
             onSearch={setQuery}
-            placeholder="Search skills by name, keyword, or category..."
+            placeholder="어떤 AI 도구가 필요하세요? (이름·설명·태그)"
           />
         </div>
         <button
           onClick={() => { setModalKey((k) => k + 1); setModalOpen(true); }}
-          className="inline-flex items-center gap-2 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-indigo-500/50 text-gray-300 hover:text-white text-sm font-medium px-4 py-2.5 transition-all whitespace-nowrap cursor-pointer"
+          className="inline-flex items-center gap-2 rounded-lg bg-stone-100 hover:bg-stone-200 border border-stone-300 hover:border-amber-500/60 text-stone-600 hover:text-stone-900 text-sm font-medium px-4 py-2.5 transition-all whitespace-nowrap cursor-pointer"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
-          저장소 추가
+          외부 작업장 연결
         </button>
       </section>
 
@@ -142,7 +135,7 @@ export default function Home() {
       {/* Search context */}
       {data && !loading && (query || selectedCategory) && (
         <div className="text-center mb-6">
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-stone-400">
             {data.total} result{data.total !== 1 ? "s" : ""}
             {query && ` for "${query}"`}
             {selectedCategory &&
@@ -185,8 +178,8 @@ export default function Home() {
           <EmptyRepoState onAddRepo={() => { setModalKey((k) => k + 1); setModalOpen(true); }} />
         ) : hasNoResults ? (
           <div className="text-center py-16">
-            <div className="text-gray-500 text-lg mb-2">No skills found</div>
-            <p className="text-gray-600 text-sm">
+            <div className="text-stone-400 text-lg mb-2">No skills found</div>
+            <p className="text-stone-400 text-sm">
               Try adjusting your search or filter criteria
             </p>
           </div>

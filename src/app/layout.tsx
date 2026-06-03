@@ -18,8 +18,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[#ece2d0] text-stone-800 min-h-screen`}>
-        <header className="sticky top-0 z-50 border-b border-stone-300 bg-[#ece2d0]/90 backdrop-blur-md">
+      <body className={`${inter.className} bg-wood-texture text-stone-800 min-h-screen`}>
+        <header className="sticky top-0 z-50 border-b border-stone-300 bg-wood-grain bg-[#ece2d0]/90 backdrop-blur-md">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <Link href="/" className="flex items-center gap-3">

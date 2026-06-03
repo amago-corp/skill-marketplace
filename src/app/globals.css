@@ -5,6 +5,36 @@
   --color-foreground: #f9fafb;
 }
 
+/* === Phase 4a: 텍스처 패턴 (장인 작업장 톤) === */
+
+/* 우드 그레인 — 미세한 나뭇결 노이즈. body 배경에 깔리는 인상의 결정자 */
+.bg-wood-texture {
+  background-color: #ece2d0;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='wn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.25 0 0 0 0 0.15 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23wn)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* 우드 라인 — 가로 결 (plank-like). 헤더에 살짝 강조 */
+.bg-wood-grain {
+  background-color: #ece2d0;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 90, 60, 0.04) 0px,
+      rgba(120, 90, 60, 0.04) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='wg'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='2' stitchTiles='stitch' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.2 0 0 0 0 0.1 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23wg)'/%3E%3C/svg%3E");
+}
+
+/* 양피지 — 카드 위 부드러운 종이 결 */
+.bg-parchment {
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='pn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch' seed='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.35 0 0 0 0 0.25 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23pn)'/%3E%3C/svg%3E");
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

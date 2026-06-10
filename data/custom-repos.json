@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "id": "github:epoko77-ai/im-not-ai",
+    "provider": "github",
+    "owner": "epoko77-ai",
+    "repo": "im-not-ai",
+    "branch": "main",
+    "displayName": "Humanize KR",
+    "description": "AI가 쓴 글이 아닌 것처럼 윤문해주는 스킬"
+  }
+]

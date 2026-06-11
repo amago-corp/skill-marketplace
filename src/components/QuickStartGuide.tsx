@@ -1,3 +1,6 @@
+import CopyPromptBox from "./CopyPromptBox";
+import { SETUP_PROMPT } from "@/lib/prompts";
+
 export default function QuickStartGuide() {
   return (
     <details className="group rounded-2xl border border-amber-500/40 bg-gradient-to-br from-amber-50/80 to-white/60 shadow-md shadow-amber-500/10 h-full">
@@ -75,11 +78,10 @@ export default function QuickStartGuide() {
               </div>
 
               <div>
-                <div className="font-medium text-stone-700 mb-1">2. GitHub CLI 설치 + 로그인</div>
-                <pre className="rounded-lg bg-[#ece2d0] border border-stone-300 px-3 py-2.5 text-xs text-stone-700 overflow-x-auto">
-                  <code>{`brew install gh
-gh auth login`}</code>
-                </pre>
+                <div className="font-medium text-stone-700 mb-1">
+                  2. Claude Code 켜고 아래 문장 복붙 — 나머지는 클로드가 해줘요
+                </div>
+                <CopyPromptBox text={SETUP_PROMPT} />
               </div>
 
               <div className="text-stone-500">

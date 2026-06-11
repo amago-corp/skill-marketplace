@@ -1,3 +1,6 @@
+import CopyPromptBox from "./CopyPromptBox";
+import { REGISTER_REPO_PROMPT } from "@/lib/prompts";
+
 export default function ContributeGuide() {
   return (
     <details className="group rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-50/80 to-white/60 shadow-md shadow-emerald-500/10 h-full">
@@ -71,6 +74,14 @@ export default function ContributeGuide() {
           >
             ② 예시 plugin: github.com/amago-corp/agent-hub/tree/main/plugins/data-analyst
           </a>
+        </div>
+
+        <div className="mb-5 rounded-lg border border-emerald-500/20 bg-emerald-50/60 p-3 space-y-2">
+          <div className="text-xs font-medium text-stone-600">
+            💡 이미 본인 GitHub 레포로 운영 중인 도구라면 — 레포 옮길 필요 없이 아래 문장을
+            Claude Code 에 복붙 (저장소 주소만 본인 것으로)
+          </div>
+          <CopyPromptBox text={REGISTER_REPO_PROMPT} />
         </div>
 
         <details className="group/inner border-t border-stone-300 pt-4">

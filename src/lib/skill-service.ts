@@ -3,7 +3,7 @@ import { Skill, SkillRepository, PluginChild } from "./types";
 import { SkillEntry } from "./providers/types";
 import { getProvider } from "./providers/registry";
 import { buildSkillFilePath } from "./providers/constants";
-import { resolveSkillVersion, resolveRepoVersions } from "./version-resolver";
+import { resolveSkillVersion, resolveSkillAuthor, resolveRepoVersions } from "./version-resolver";
 import { buildInstallPrompt } from "./prompts";
 
 // In-memory cache
@@ -205,6 +205,7 @@ function groupByPlugin(skills: Skill[]): Skill[] {
       providerType: representative.providerType,
       installCommand: representative.installCommand,
       pluginName,
+      author: representative.author,
       children,
       isNew: members.some((m) => m.isNew),
     });
@@ -245,6 +246,7 @@ export async function getAllSkills(
 
       const skill = parseSkillMd(raw, entry.name, repo, entry.sourceType, entry.sourcePath, entry.pluginName, lastCommitDate ?? undefined);
       skill.version = resolveSkillVersion(skill.pluginName, repo);
+      skill.author = resolveSkillAuthor(skill.pluginName, repo);
       return skill;
     });
 

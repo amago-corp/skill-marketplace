@@ -108,7 +108,7 @@ export default function SkillDetailPage() {
                 </span>
               )}
               <span className="text-sm text-stone-400">
-                from {skill.repoDisplayName}
+                {skill.author ? `by ${skill.author} · ` : ""}from {skill.repoDisplayName}
               </span>
               {skill.lastUpdated && (
                 <>

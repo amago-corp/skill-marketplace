@@ -48,7 +48,9 @@ export default function SkillCard({ skill }: SkillCardProps) {
       </div>
 
       <p className="text-xs text-stone-500 mb-3">
-        by 장인(maker) <span className="text-stone-700 font-medium">{skill.repoDisplayName}</span>
+        by <span className="text-stone-700 font-medium">{skill.author || "장인(maker)"}</span>
+        <span className="mx-1 text-stone-300">·</span>
+        {skill.repoDisplayName}
       </p>
 
       <p className="text-sm text-stone-600 leading-relaxed mb-4 line-clamp-3">

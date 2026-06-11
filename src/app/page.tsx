@@ -37,7 +37,6 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalKey, setModalKey] = useState(0);
   const [repoModalOpen, setRepoModalOpen] = useState(false);
 
   const fetchSkills = useCallback(async () => {
@@ -113,7 +112,7 @@ export default function Home() {
           />
         </div>
         <button
-          onClick={() => { setModalKey((k) => k + 1); setModalOpen(true); }}
+          onClick={() => setModalOpen(true)}
           className="inline-flex items-center gap-2 rounded-lg bg-stone-100 hover:bg-stone-200 border border-stone-300 hover:border-amber-500/60 text-stone-600 hover:text-stone-900 text-sm font-medium px-4 py-2.5 transition-all whitespace-nowrap cursor-pointer"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -177,7 +176,7 @@ export default function Home() {
             ))}
           </div>
         ) : hasNoRepos ? (
-          <EmptyRepoState onAddRepo={() => { setModalKey((k) => k + 1); setModalOpen(true); }} />
+          <EmptyRepoState onAddRepo={() => setModalOpen(true)} />
         ) : hasNoResults ? (
           <div className="text-center py-16">
             <div className="text-stone-400 text-lg mb-2">No skills found</div>
@@ -204,13 +203,8 @@ export default function Home() {
 
       {/* Add Repo Modal */}
       <AddRepoModal
-        key={modalKey}
         open={modalOpen}
         onClose={() => setModalOpen(false)}
-        onSuccess={() => {
-          setModalOpen(false);
-          fetchSkills();
-        }}
       />
 
       {/* Repo Manage Modal */}

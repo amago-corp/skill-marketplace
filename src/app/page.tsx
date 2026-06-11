@@ -98,7 +98,7 @@ export default function Home() {
       </section>
 
       {/* Guides — usage + contribution */}
-      <section className="max-w-5xl mx-auto mb-10 grid lg:grid-cols-2 gap-4">
+      <section className="max-w-5xl mx-auto mb-10 grid lg:grid-cols-2 gap-4 items-start">
         <QuickStartGuide />
         <ContributeGuide />
       </section>

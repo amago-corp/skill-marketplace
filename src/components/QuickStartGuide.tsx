@@ -3,7 +3,7 @@ import { SETUP_PROMPT } from "@/lib/prompts";
 
 export default function QuickStartGuide() {
   return (
-    <details className="group rounded-2xl border border-amber-500/40 bg-gradient-to-br from-amber-50/80 to-white/60 shadow-md shadow-amber-500/10 h-full">
+    <details className="group rounded-2xl border border-amber-500/40 bg-gradient-to-br from-amber-50/80 to-white/60 shadow-md shadow-amber-500/10">
         <summary className="cursor-pointer list-none flex items-center justify-between gap-3 px-6 sm:px-7 py-5">
           <div className="flex items-center gap-2">
             <span className="text-xl">✨</span>

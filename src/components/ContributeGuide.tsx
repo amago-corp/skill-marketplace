@@ -3,7 +3,7 @@ import { CONTRIBUTE_PROMPT, REGISTER_REPO_PROMPT } from "@/lib/prompts";
 
 export default function ContributeGuide() {
   return (
-    <details className="group rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-50/80 to-white/60 shadow-md shadow-emerald-500/10 h-full">
+    <details className="group rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-50/80 to-white/60 shadow-md shadow-emerald-500/10">
       <summary className="cursor-pointer list-none flex items-center justify-between gap-3 px-6 sm:px-7 py-5">
         <div className="flex items-center gap-2">
           <span className="text-xl">🔨</span>

@@ -22,6 +22,13 @@ claude plugin install ${installTarget}@${marketplaceName}
 설치 끝나면 사용법 알려줘.`;
 }
 
+export const CONTRIBUTE_PROMPT = `방금 만든 이 자동화를 amago AI Hub plugin 으로 정리해서 올려줘.
+
+기여 규칙: https://github.com/amago-corp/agent-hub/blob/main/CONTRIBUTING.md
+예시 plugin: https://github.com/amago-corp/agent-hub/tree/main/plugins/data-analyst
+
+위 두 링크의 구조·규칙·예시를 따라 정리하고, amago-corp/agent-hub 에 PR 올린 뒤 링크 알려줘.`;
+
 export const REGISTER_REPO_PROMPT = `내 GitHub 저장소를 amago AI Hub 마켓에 등록해줘.
 
 저장소: https://github.com/아이디/레포이름 ← 본인 것으로 변경

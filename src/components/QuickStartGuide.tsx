@@ -37,7 +37,7 @@ export default function QuickStartGuide() {
                 2
               </span>
               <span className="text-sm sm:text-base text-stone-600 pt-0.5">
-                상세 페이지의 회색 박스 명령어 복사 📋
+                상세 페이지 &quot;🛠️ 설치하기&quot; 박스의 문장 복사 📋
               </span>
             </li>
             <li className="flex items-start gap-3">

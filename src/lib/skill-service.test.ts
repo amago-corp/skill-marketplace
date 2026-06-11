@@ -68,10 +68,10 @@ Content`;
     const skill = parseSkillMd(raw, "my-skill", repo, "skill", "skills");
 
     expect(skill.installCommand).toContain(
-      `/plugin marketplace add ${repo.owner}/${repo.repo}`
+      `claude plugin marketplace add ${repo.owner}/${repo.repo}`
     );
     expect(skill.installCommand).toContain(
-      `/plugin install my-skill@${repo.repo}`
+      `claude plugin install my-skill@${repo.repo}`
     );
   });
 
@@ -87,7 +87,7 @@ Content`;
     );
 
     expect(skill.installCommand).toContain(
-      `/plugin install my-plugin@${repo.repo}`
+      `claude plugin install my-plugin@${repo.repo}`
     );
     expect(skill.pluginName).toBe("my-plugin");
   });
@@ -107,10 +107,10 @@ Content`;
     const skill = parseSkillMd(raw, "my-skill", bbRepo, "skill", "skills");
 
     expect(skill.installCommand).toContain(
-      `/plugin marketplace add ${bbRepo.baseUrl}/scm/${bbRepo.owner}/${bbRepo.repo}.git`
+      `claude plugin marketplace add ${bbRepo.baseUrl}/scm/${bbRepo.owner}/${bbRepo.repo}.git`
     );
     expect(skill.installCommand).toContain(
-      `/plugin install my-skill@${bbRepo.repo}`
+      `claude plugin install my-skill@${bbRepo.repo}`
     );
   });
 

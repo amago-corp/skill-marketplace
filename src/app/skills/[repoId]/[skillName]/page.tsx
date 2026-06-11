@@ -8,6 +8,7 @@ import { Skill } from "@/lib/types";
 import { getCategoryBadgeClass } from "@/lib/categoryColors";
 import { ProviderIcon, getProviderLabel } from "@/components/ProviderIcon";
 import CategoryIcon from "@/components/CategoryIcon";
+import CopyPromptBox from "@/components/CopyPromptBox";
 import { formatDate } from "@/lib/format-date";
 
 const RELATED_PATTERN = /see\s+([\w-]+)/gi;
@@ -25,7 +26,6 @@ export default function SkillDetailPage() {
   const [skill, setSkill] = useState<Skill | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -44,12 +44,6 @@ export default function SkillDetailPage() {
     }
     fetchSkill();
   }, [repoId, skillName]);
-
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   if (loading) {
     return (
@@ -140,20 +134,15 @@ export default function SkillDetailPage() {
         <p className="text-stone-500 leading-relaxed">{skill.description}</p>
       </div>
 
-      {/* Install Command */}
+      {/* Install Prompt */}
       <div className="mb-8 rounded-xl border border-stone-300 bg-stone-50 p-4">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-stone-500">Installation</span>
-          <button
-            onClick={() => handleCopy(skill.installCommand)}
-            className="text-xs text-amber-700 hover:text-amber-700 transition-colors"
-          >
-            {copied ? "Copied!" : "Copy"}
-          </button>
+        <div className="text-sm font-medium text-stone-700 mb-1">
+          🛠️ 설치하기
         </div>
-        <pre className="text-sm text-green-400 font-mono bg-[#ece2d0] rounded-lg p-3 whitespace-pre-wrap">
-          {skill.installCommand}
-        </pre>
+        <p className="text-xs text-stone-400 mb-2">
+          아래 문장을 복사해서 Claude Code 에 붙여넣고 Enter — 설치는 클로드가 해줘요.
+        </p>
+        <CopyPromptBox text={skill.installCommand} />
       </div>
 
       {/* Plugin children — agent + skill 묶음 */}
@@ -186,7 +175,7 @@ export default function SkillDetailPage() {
             ))}
           </div>
           <p className="text-xs text-stone-400 mt-3">
-            💡 위 명령어 한 번 실행하면 이 컴포넌트들이 모두 함께 설치됩니다.
+            💡 위 설치 문장 한 번이면 이 컴포넌트들이 모두 함께 설치됩니다.
           </p>
         </div>
       )}

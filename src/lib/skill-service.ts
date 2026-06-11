@@ -4,6 +4,7 @@ import { SkillEntry } from "./providers/types";
 import { getProvider } from "./providers/registry";
 import { buildSkillFilePath } from "./providers/constants";
 import { resolveSkillVersion, resolveRepoVersions } from "./version-resolver";
+import { buildInstallPrompt } from "./prompts";
 
 // In-memory cache
 const cache = new Map<string, { data: unknown; timestamp: number }>();
@@ -125,7 +126,7 @@ export function parseSkillMd(
   const marketplaceSource = repo.baseUrl
     ? `${repo.baseUrl}/scm/${repo.owner}/${repo.repo}.git`
     : `${repo.owner}/${repo.repo}`;
-  const installCommand = `/plugin marketplace add ${marketplaceSource}\n/plugin install ${installTarget}@${repo.repo}`;
+  const installCommand = buildInstallPrompt(marketplaceSource, installTarget, repo.repo);
 
   return {
     slug: skillName,

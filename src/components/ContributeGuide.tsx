@@ -1,5 +1,5 @@
 import CopyPromptBox from "./CopyPromptBox";
-import { REGISTER_REPO_PROMPT } from "@/lib/prompts";
+import { CONTRIBUTE_PROMPT, REGISTER_REPO_PROMPT } from "@/lib/prompts";
 
 export default function ContributeGuide() {
   return (
@@ -39,12 +39,33 @@ export default function ContributeGuide() {
             <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">
               2
             </span>
-            <span className="text-sm sm:text-base text-stone-600 pt-0.5">
-              클로드한테 <span className="text-stone-800">&quot;이거 amago AI Hub plugin으로 정리해서 올려 줘&quot;</span> 요청
-              <span className="block text-xs text-stone-400 mt-1">
-                + 아래 두 링크 같이 붙여넣으면 클로드가 구조·규칙·예시를 보고 알아서 정리해요 ↓
+            <div className="flex-1 min-w-0">
+              <span className="block text-sm sm:text-base text-stone-600 pt-0.5">
+                클로드한테 <span className="text-stone-800">&quot;이거 amago AI Hub plugin으로 정리해서 올려 줘&quot;</span> 요청
               </span>
-            </span>
+              <span className="block text-xs text-stone-400 mt-1 mb-2">
+                아래 문장 통째로 복붙하면 클로드가 구조·규칙·예시를 보고 알아서 정리해요
+              </span>
+              <CopyPromptBox text={CONTRIBUTE_PROMPT} />
+              <div className="mt-1.5 flex flex-wrap gap-x-4">
+                <a
+                  href="https://github.com/amago-corp/agent-hub/blob/main/CONTRIBUTING.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-emerald-700 hover:text-emerald-800"
+                >
+                  기여 규칙 보기 →
+                </a>
+                <a
+                  href="https://github.com/amago-corp/agent-hub/tree/main/plugins/data-analyst"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-emerald-700 hover:text-emerald-800"
+                >
+                  예시 plugin 보기 →
+                </a>
+              </div>
+            </div>
           </li>
           <li className="flex items-start gap-3">
             <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">
@@ -55,26 +76,6 @@ export default function ContributeGuide() {
             </span>
           </li>
         </ol>
-
-        <div className="mb-5 rounded-lg border border-stone-300 bg-[#ece2d0]/60 p-3 space-y-2">
-          <div className="text-xs font-medium text-stone-500 mb-1">📎 클로드한테 같이 붙여넣을 링크</div>
-          <a
-            href="https://github.com/amago-corp/agent-hub/blob/main/CONTRIBUTING.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-xs text-emerald-700 hover:text-emerald-800 break-all"
-          >
-            ① 기여 규칙: github.com/amago-corp/agent-hub/blob/main/CONTRIBUTING.md
-          </a>
-          <a
-            href="https://github.com/amago-corp/agent-hub/tree/main/plugins/data-analyst"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-xs text-emerald-700 hover:text-emerald-800 break-all"
-          >
-            ② 예시 plugin: github.com/amago-corp/agent-hub/tree/main/plugins/data-analyst
-          </a>
-        </div>
 
         <div className="mb-5 rounded-lg border border-emerald-500/20 bg-emerald-50/60 p-3 space-y-2">
           <div className="text-xs font-medium text-stone-600">

@@ -117,6 +117,36 @@ describe("resolveRepoVersions", () => {
     expect(result).toEqual({ repoVersion: "4.0.0" });
   });
 
+  it("plugins/ 없음 + 루트 plugin.json version → repoVersion", async () => {
+    const provider = createMockProvider({
+      listDirectoryNames: async () => [],
+      getFileContent: async (_repo, filePath) => {
+        if (filePath === ".claude-plugin/plugin.json")
+          return JSON.stringify({ name: "humanize-korean", version: "1.5.0" });
+        return null;
+      },
+    });
+
+    const result = await resolveRepoVersions(provider, baseRepo);
+    expect(result).toEqual({ repoVersion: "1.5.0" });
+  });
+
+  it("루트 plugin.json 이 marketplace.json 보다 우선", async () => {
+    const provider = createMockProvider({
+      listDirectoryNames: async () => [],
+      getFileContent: async (_repo, filePath) => {
+        if (filePath === ".claude-plugin/plugin.json")
+          return JSON.stringify({ version: "1.5.0" });
+        if (filePath === ".claude-plugin/marketplace.json")
+          return JSON.stringify({ metadata: { version: "9.9.9" } });
+        return null;
+      },
+    });
+
+    const result = await resolveRepoVersions(provider, baseRepo);
+    expect(result).toEqual({ repoVersion: "1.5.0" });
+  });
+
   it("plugins/ 없음 + marketplace.json plugins[].version → repoVersion", async () => {
     const provider = createMockProvider({
       listDirectoryNames: async () => [],

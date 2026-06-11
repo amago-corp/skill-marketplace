@@ -1,5 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { parseSkillMd } from "./skill-service";
+import { parseSkillMd, getSkillDirectories, getAllSkills } from "./skill-service";
+import { registerProvider } from "./providers/registry";
+import { RepositoryProviderAdapter } from "./providers/types";
 import { createGithubRepo, createBitbucketRepo } from "./__tests__/fixtures";
 
 describe("parseSkillMd", () => {
@@ -154,5 +156,87 @@ Content`;
       expect(skill.lastUpdated >= before).toBe(true);
       expect(skill.lastUpdated <= after).toBe(true);
     });
+  });
+});
+
+describe("루트 .claude-plugin/plugin.json 기반 plugin 그룹핑", () => {
+  function createMockAdapter(
+    name: string,
+    overrides: Partial<RepositoryProviderAdapter> = {}
+  ): RepositoryProviderAdapter {
+    return {
+      name,
+      displayName: "Mock",
+      urlPattern: /^$/,
+      parseUrl: () => null,
+      getSkillDirectories: async () => [],
+      getSkillContent: async () => null,
+      buildSourceUrl: () => "",
+      validateRepository: async () => ({ valid: true }),
+      ...overrides,
+    };
+  }
+
+  const manifest = JSON.stringify({ name: "humanize-korean", version: "1.5.0" });
+
+  it("소속 없는 최상위 entry 에 매니페스트 name 을 pluginName 으로 부여, 기존 소속은 유지", async () => {
+    registerProvider(
+      createMockAdapter("mock-grouping", {
+        getSkillDirectories: async () => [
+          { name: "agent-a", sourceType: "agent", sourcePath: "agents", flat: true },
+          { name: "skill-b", sourceType: "skill", sourcePath: ".claude/skills", flat: false },
+          { name: "in-plugin", sourceType: "skill", sourcePath: "plugins/p1/skills", flat: false, pluginName: "p1" },
+        ],
+        getFileContent: async (_repo, filePath) =>
+          filePath === ".claude-plugin/plugin.json" ? manifest : null,
+      })
+    );
+    const mockRepo = createGithubRepo({ id: "mock:grouping", provider: "mock-grouping" });
+
+    const entries = await getSkillDirectories(mockRepo);
+
+    expect(entries.find((e) => e.name === "agent-a")?.pluginName).toBe("humanize-korean");
+    expect(entries.find((e) => e.name === "skill-b")?.pluginName).toBe("humanize-korean");
+    expect(entries.find((e) => e.name === "in-plugin")?.pluginName).toBe("p1");
+  });
+
+  it("루트 plugin.json 없으면 pluginName 부여하지 않음", async () => {
+    registerProvider(
+      createMockAdapter("mock-no-manifest", {
+        getSkillDirectories: async () => [
+          { name: "agent-a", sourceType: "agent", sourcePath: "agents", flat: true },
+        ],
+        getFileContent: async () => null,
+      })
+    );
+    const mockRepo = createGithubRepo({ id: "mock:no-manifest", provider: "mock-no-manifest" });
+
+    const entries = await getSkillDirectories(mockRepo);
+
+    expect(entries[0].pluginName).toBeUndefined();
+  });
+
+  it("getAllSkills — 단일 plugin 카드로 묶이고 version 은 루트 plugin.json 에서 resolve", async () => {
+    registerProvider(
+      createMockAdapter("mock-all", {
+        getSkillDirectories: async () => [
+          { name: "agent-a", sourceType: "agent", sourcePath: "agents", flat: true },
+          { name: "skill-b", sourceType: "skill", sourcePath: ".claude/skills", flat: false },
+        ],
+        getSkillContent: async () => "---\ndescription: d\n---\nbody",
+        getFileContent: async (_repo, filePath) =>
+          filePath === ".claude-plugin/plugin.json" ? manifest : null,
+        listDirectoryNames: async () => [],
+      })
+    );
+    const mockRepo = createGithubRepo({ id: "mock:all-skills-root", provider: "mock-all" });
+
+    const skills = await getAllSkills([mockRepo]);
+
+    expect(skills).toHaveLength(1);
+    expect(skills[0].sourceType).toBe("plugin");
+    expect(skills[0].slug).toBe("humanize-korean");
+    expect(skills[0].version).toBe("1.5.0");
+    expect(skills[0].children).toHaveLength(2);
   });
 });

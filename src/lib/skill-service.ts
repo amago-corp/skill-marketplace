@@ -3,7 +3,7 @@ import { Skill, SkillRepository, PluginChild } from "./types";
 import { SkillEntry } from "./providers/types";
 import { getProvider } from "./providers/registry";
 import { buildSkillFilePath } from "./providers/constants";
-import { resolveSkillVersion } from "./version-resolver";
+import { resolveSkillVersion, resolveRepoVersions } from "./version-resolver";
 
 // In-memory cache
 const cache = new Map<string, { data: unknown; timestamp: number }>();
@@ -47,6 +47,22 @@ export async function getSkillDirectories(
 
   const provider = getProvider(repo.provider);
   const entries = await provider.getSkillDirectories(repo);
+
+  // 루트 .claude-plugin/plugin.json (Claude Code 단일 플러그인 레포 표준) 이 있으면
+  // 소속 없는 최상위 자산을 해당 플러그인으로 묶는다
+  if (provider.getFileContent && entries.some((e) => !e.pluginName)) {
+    const manifest = await provider.getFileContent(repo, ".claude-plugin/plugin.json");
+    if (manifest) {
+      try {
+        const rootPluginName = JSON.parse(manifest).name;
+        if (rootPluginName) {
+          for (const entry of entries) {
+            entry.pluginName ??= rootPluginName;
+          }
+        }
+      } catch { /* JSON 파싱 실패 시 skip */ }
+    }
+  }
 
   setCache(cacheKey, entries);
   return entries;
@@ -208,6 +224,12 @@ export async function getAllSkills(
 
   for (const repo of repos) {
     const provider = getProvider(repo.provider);
+
+    // repos.config.ts 정적 등록 레포는 추가 시점의 버전 resolve 를 거치지 않으므로 여기서 보충
+    if (!repo.versionMap && !repo.repoVersion) {
+      Object.assign(repo, await resolveRepoVersions(provider, repo));
+    }
+
     const entries = await getSkillDirectories(repo);
 
     const skillPromises = entries.map(async (entry) => {

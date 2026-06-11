@@ -41,7 +41,22 @@ export async function resolveRepoVersions(
     }
   }
 
-  // 우선순위 2, 3: marketplace.json
+  // 우선순위 2: 루트 .claude-plugin/plugin.json (Claude Code 단일 플러그인 레포 표준)
+  const rootPluginContent = await provider.getFileContent(
+    repo,
+    ".claude-plugin/plugin.json"
+  );
+
+  if (rootPluginContent) {
+    try {
+      const json = JSON.parse(rootPluginContent);
+      if (json.version) {
+        return { repoVersion: json.version };
+      }
+    } catch { /* JSON 파싱 실패 시 skip */ }
+  }
+
+  // 우선순위 3, 4: marketplace.json
   const marketplaceContent = await provider.getFileContent(
     repo,
     ".claude-plugin/marketplace.json"
@@ -51,13 +66,13 @@ export async function resolveRepoVersions(
     try {
       const json = JSON.parse(marketplaceContent);
 
-      // 우선순위 2: plugins 필드의 version
+      // 우선순위 3: plugins 필드의 version
       if (json.plugins && Array.isArray(json.plugins) && json.plugins.length > 0) {
         const version = json.plugins[0]?.version;
         if (version) return { repoVersion: version };
       }
 
-      // 우선순위 3: metadata.version
+      // 우선순위 4: metadata.version
       if (json.metadata?.version) {
         return { repoVersion: json.metadata.version };
       }

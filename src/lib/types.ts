@@ -12,6 +12,10 @@ export interface SkillRepository {
   versionMap?: Record<string, string>;
   /** 레포 단일 버전 (marketplace.json → plugins[].version 또는 metadata.version) */
   repoVersion?: string;
+  /** 플러그인별 작성자 맵 (plugins/{name}/.claude-plugin/plugin.json → author.name) */
+  authorMap?: Record<string, string>;
+  /** 레포 단일 작성자 (루트 plugin.json → author.name) */
+  repoAuthor?: string;
 }
 
 export interface CategoryDefinition {
@@ -45,6 +49,8 @@ export interface Skill {
   providerType: string;
   installCommand: string;
   pluginName?: string;
+  /** plugin.json author.name (없으면 미표시 fallback) */
+  author?: string;
   /** sourceType === "plugin" 일 때만 채워짐 — 이 plugin에 포함된 agent/skill 목록 */
   children?: PluginChild[];
   isNew: boolean;

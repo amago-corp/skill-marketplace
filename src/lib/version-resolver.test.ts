@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { resolveRepoVersions, resolveSkillVersion } from "./version-resolver";
+import { resolveRepoVersions, resolveSkillVersion, resolveSkillAuthor } from "./version-resolver";
 import { SkillRepository } from "./types";
 import { RepositoryProviderAdapter } from "./providers/types";
 
@@ -185,6 +185,64 @@ describe("resolveRepoVersions", () => {
 
     const result = await resolveRepoVersions(provider, baseRepo);
     expect(result).toEqual({});
+  });
+});
+
+describe("resolveRepoVersions — author 수집", () => {
+  it("plugins/ plugin.json 에 author 있으면 authorMap 포함", async () => {
+    const provider = createMockProvider({
+      listDirectoryNames: async (_repo, dirPath) => {
+        if (dirPath === "plugins") return ["pluginA", "pluginB"];
+        return [];
+      },
+      getFileContent: async (_repo, filePath) => {
+        if (filePath === "plugins/pluginA/.claude-plugin/plugin.json")
+          return JSON.stringify({ version: "1.0.0", author: { name: "전준완" } });
+        if (filePath === "plugins/pluginB/.claude-plugin/plugin.json")
+          return JSON.stringify({ version: "2.0.0", author: "서연" });
+        return null;
+      },
+    });
+
+    const result = await resolveRepoVersions(provider, baseRepo);
+    expect(result).toEqual({
+      versionMap: { pluginA: "1.0.0", pluginB: "2.0.0" },
+      authorMap: { pluginA: "전준완", pluginB: "서연" },
+    });
+  });
+
+  it("루트 plugin.json author → repoAuthor", async () => {
+    const provider = createMockProvider({
+      listDirectoryNames: async () => [],
+      getFileContent: async (_repo, filePath) => {
+        if (filePath === ".claude-plugin/plugin.json")
+          return JSON.stringify({ version: "1.5.0", author: { name: "epoko77-ai" } });
+        return null;
+      },
+    });
+
+    const result = await resolveRepoVersions(provider, baseRepo);
+    expect(result).toEqual({ repoVersion: "1.5.0", repoAuthor: "epoko77-ai" });
+  });
+});
+
+describe("resolveSkillAuthor", () => {
+  it("pluginName + authorMap hit → plugin author 반환", () => {
+    const repo: SkillRepository = {
+      ...baseRepo,
+      authorMap: { myPlugin: "전준완" },
+      repoAuthor: "fallback",
+    };
+    expect(resolveSkillAuthor("myPlugin", repo)).toBe("전준완");
+  });
+
+  it("authorMap miss → repoAuthor fallback", () => {
+    const repo: SkillRepository = { ...baseRepo, repoAuthor: "epoko77-ai" };
+    expect(resolveSkillAuthor("other", repo)).toBe("epoko77-ai");
+  });
+
+  it("모두 없음 → undefined", () => {
+    expect(resolveSkillAuthor(undefined, baseRepo)).toBeUndefined();
   });
 });
 

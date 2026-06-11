@@ -4,6 +4,18 @@ import { RepositoryProviderAdapter } from "./providers/types";
 export interface RepoVersionInfo {
   versionMap?: Record<string, string>;
   repoVersion?: string;
+  authorMap?: Record<string, string>;
+  repoAuthor?: string;
+}
+
+/** plugin.json 의 author 필드 (string 또는 { name }) 에서 표시명 추출 */
+function parseAuthorName(author: unknown): string | undefined {
+  if (typeof author === "string" && author.trim()) return author;
+  if (author && typeof author === "object" && "name" in author) {
+    const name = (author as { name?: unknown }).name;
+    if (typeof name === "string" && name.trim()) return name;
+  }
+  return undefined;
 }
 
 export async function resolveRepoVersions(
@@ -18,6 +30,7 @@ export async function resolveRepoVersions(
   const pluginNames = await provider.listDirectoryNames(repo, "plugins");
   if (pluginNames.length > 0) {
     const versionMap: Record<string, string> = {};
+    const authorMap: Record<string, string> = {};
 
     await Promise.all(
       pluginNames.map(async (name) => {
@@ -31,13 +44,21 @@ export async function resolveRepoVersions(
             if (json.version) {
               versionMap[name] = json.version;
             }
+            const author = parseAuthorName(json.author);
+            if (author) {
+              authorMap[name] = author;
+            }
           } catch { /* JSON 파싱 실패 시 skip */ }
         }
       })
     );
 
     if (Object.keys(versionMap).length > 0) {
-      return { versionMap };
+      const info: RepoVersionInfo = { versionMap };
+      if (Object.keys(authorMap).length > 0) {
+        info.authorMap = authorMap;
+      }
+      return info;
     }
   }
 
@@ -51,7 +72,12 @@ export async function resolveRepoVersions(
     try {
       const json = JSON.parse(rootPluginContent);
       if (json.version) {
-        return { repoVersion: json.version };
+        const info: RepoVersionInfo = { repoVersion: json.version };
+        const author = parseAuthorName(json.author);
+        if (author) {
+          info.repoAuthor = author;
+        }
+        return info;
       }
     } catch { /* JSON 파싱 실패 시 skip */ }
   }
@@ -93,4 +119,14 @@ export function resolveSkillVersion(
     return repo.repoVersion;
   }
   return "0.0.0";
+}
+
+export function resolveSkillAuthor(
+  pluginName: string | undefined,
+  repo: SkillRepository
+): string | undefined {
+  if (pluginName && repo.authorMap?.[pluginName]) {
+    return repo.authorMap[pluginName];
+  }
+  return repo.repoAuthor;
 }

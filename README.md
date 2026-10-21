@@ -88,6 +88,7 @@ BITBUCKET_TOKEN=your_bitbucket_token        # Bitbucket Server 사용 시
 
 - `GITHUB_TOKEN` — public 저장소 읽기 권한만 있으면 됩니다. [GitHub Personal Access Token 생성](https://github.com/settings/tokens)에서 발급할 수 있습니다.
 - `BITBUCKET_TOKEN` — Bitbucket Server 저장소 접근 시 필요합니다. (선택)
+- `ALLOWED_EMAILS` · `ALLOWED_EMAILS_EXTRA` — 로그인을 허용할 구글 이메일 (쉼표 구분, 두 값을 합쳐서 봄). 둘 다 비면 누구나 로그인됩니다. 운영(Vercel)에서 `ALLOWED_EMAILS` 는 Sensitive 라 내용을 읽을 수 없으므로, **새 사람은 `ALLOWED_EMAILS_EXTRA`(Non-sensitive) 끝에 덧붙이고 재배포**합니다.
 
 ### 3. 실행
 

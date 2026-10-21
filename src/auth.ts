@@ -15,7 +15,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     async signIn({ user }) {
-      const allowed = (process.env.ALLOWED_EMAILS ?? "")
+      // ALLOWED_EMAILS 는 Sensitive 라 읽을 수 없으므로, 새 사람은 읽을 수 있는 ALLOWED_EMAILS_EXTRA 에 덧붙인다
+      const allowed = [process.env.ALLOWED_EMAILS, process.env.ALLOWED_EMAILS_EXTRA]
+        .join(",")
         .split(",")
         .map((e) => e.trim())
         .filter(Boolean);
